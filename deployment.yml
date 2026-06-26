@@ -1,10 +1,13 @@
-projects:
-  - name: my_project
-    targetName: prod
+jobs:
+  - name: daily model runs
+    targetName: dev
     schedule:
       type: cron
-      entries:
-        - "0 * * * *"
+      entries: ["0 12 * * *"]
+    timeout: 2h30m
+    retryOnFailure: true
     steps:
-      - name: Run Models
+      - name: run models
         command: dbt run
+
+
